@@ -1,0 +1,20 @@
+{
+  "name": "sentinel-deploy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Deploy SentinelHalt and TreasuryVault to GenLayer Studio Devnet (chain id 61997).",
+  "scripts": {
+    "deploy": "tsx deploy.ts",
+    "check": "tsx check.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "genlayer-js": "2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

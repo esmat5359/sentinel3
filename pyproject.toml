@@ -1,0 +1,15 @@
+# This project is not an installable Python package -- it is a set of GenVM
+# contracts plus tests -- so there is deliberately no [project] table here
+# (setuptools cannot auto-discover a package in this multi-directory layout
+# and `pip install -e .` would fail). Install tooling with:
+#
+#     pip install -r requirements-dev.txt
+
+[tool.pytest.ini_options]
+testpaths = ["tests/direct"]
+addopts = "-v"
+
+# tests/integration/ is intentionally excluded from the default testpaths
+# above: it needs a live network (see tests/integration/README.md) and
+# should be run explicitly with `gltest tests/integration/ --network
+# studio_devnet`, not picked up by a bare `pytest` invocation.

@@ -1,0 +1,37 @@
+# Network configuration for gltest -- ONLY needed for the live integration test.
+#
+#   cp gltest.config.example.yaml gltest.config.yaml
+#   cp deploy/.env.example .env      # then fill in DEPLOYER_PRIVATE_KEY
+#   gltest tests/integration/ --network studio_devnet -v
+#
+# Why this ships as an *example* and not as an active gltest.config.yaml:
+# gltest resolves every ${VAR} in this file for ALL networks the moment it is
+# loaded, so an active copy would make even the offline Direct Mode tests
+# fail with "Environment variable DEPLOYER_PRIVATE_KEY is not set" for anyone
+# without a funded key. The Direct Mode tests need no config and no key.
+#
+# "Studio Devnet" here is the same environment the hackathon brief calls
+# "Studio Next" -- studio-dev.genlayer.com is the canonical RPC; the
+# studio-next.genlayer.com host mentioned in hackathon materials is a
+# browser-facing alias for the same chain (id 61997).
+
+networks:
+  default: studio_devnet
+
+  studio_devnet:
+    id: 61997
+    url: "https://studio-dev.genlayer.com/api"
+    # Read from the environment at runtime. Never commit a real key.
+    accounts:
+      - "${DEPLOYER_PRIVATE_KEY}"
+    from: "${DEPLOYER_PRIVATE_KEY}"
+
+  localnet:
+    id: 61127
+    url: "http://127.0.0.1:4000/api"
+
+paths:
+  contracts: "contracts"
+  artifacts: "artifacts"
+
+environment: .env
