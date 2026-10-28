@@ -56,7 +56,7 @@ import pytest
 #
 # Keep this in step with the hash in contracts/*.py:
 # `python3 scripts/set_runner_hash.py --show`.
-GENVM_RUNTIME_VERSION = "v0.6.0-rc9"
+GENVM_RUNTIME_VERSION = "v0.6.0-rc3"
 os.environ.setdefault("GENVM_VERSION", GENVM_RUNTIME_VERSION)
 
 

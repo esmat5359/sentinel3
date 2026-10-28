@@ -5,8 +5,8 @@ different GenVM runner.
 
 Why this exists: that header pins the exact GenVM Python runner a contract
 runs on, and a network only accepts a contract whose runner hash it knows.
-The hash changes between GenVM releases (v0.6.0-rc3 used 5jycge..., the
-v0.6.0-rc9/rc10 bundles use babwp9...), so a contract pinned to a runner the
+The hash changes between GenVM releases (v0.6.0-rc3 uses 5jycge..., the
+v0.6.0-rc9/rc10 bundles use babwp9...; Studio Next needs 5jycge...), so a contract pinned to a runner the
 target network does not have fails at deploy time, not at lint time. If
 Studio Devnet's runtime moves, run this once instead of hand-editing files.
 

@@ -204,7 +204,8 @@ Requires Python 3.12+ and Node 22+.
 ```bash
 pip install -r requirements-dev.txt
 python -m pytest tests/direct          # 165 tests
-genvm-lint download --version v0.6.0-rc9   # once, so the linter can find the runner
+genvm-lint download --version v0.6.0-rc3   # once, so the linter can find the runner
+export GENVM_VERSION=v0.6.0-rc3            # lint against the runtime that ships the pinned runner
 genvm-lint check contracts/SentinelHalt.py
 genvm-lint check contracts/TreasuryVault.py
 ```
@@ -255,14 +256,14 @@ gltest tests/integration --network studio_devnet -v
 Each contract pins one exact GenVM Python runner in its first line:
 
 ```python
-# { "Depends": "py-genlayer:babwp9t37jw9g4j2bccgn14g6x7x9s1f7dsmh7emvz735pz4zxa0" }
+# { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
 ```
 
 A network only accepts a contract whose runner it knows, and the hash differs
 between GenVM releases (`v0.6.0-rc3` uses `5jycge...`; the `v0.6.0-rc9` and
-`-rc10` bundles - byte-identical - use `babwp9...`). This repo pins the latter
-because it is the newest release published at build time, but **it could not
-be confirmed against what Studio Devnet is actually running.**
+`-rc10` bundles use `babwp9...`). **This repo pins `5jycge...` because that is the
+header required on Studio Next**, and the offline lint and tests run on GenVM
+`v0.6.0-rc3`, the release that ships it.
 
 If your deploy is rejected over the runner, run
 `python3 scripts/set_runner_hash.py --show`, find the runner your network
